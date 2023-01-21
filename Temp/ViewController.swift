@@ -16,54 +16,34 @@ class ViewController: UIViewController {
         configure()
     }
     
-    var container: UIView = UIView()
     var stack: UIStackView = UIStackView()
-    var firstLabel: UILabel = UILabel()
-    var secondLabael: UILabel = UILabel()
-    var imageView: UIImageView = UIImageView()
 
     func configure() {
-        container.backgroundColor = .systemGray4
-        view.addSubview(container)
-        
-        container.addSubview(stack)
-        
-        container.layer.cornerRadius = 10
-        
-        firstLabel.text = "Название будильника"
-        secondLabael.text = "Мелодия"
-        
-        firstLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
-        secondLabael.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-        
-        stack.addArrangedSubview(firstLabel)
-        stack.addArrangedSubview(secondLabael)
-        
-        imageView.image = UIImage(systemName: "chevron.right")
-        imageView.contentMode = .scaleAspectFit
 
-        stack.addArrangedSubview(imageView)
-        stack.spacing = 4
+        stack.axis = .vertical
+        stack.spacing = 10
+        
+        view.addSubview(stack)
+        
+        let a1 = AlarmLineView()
+        let a2 = AlarmLineView()
+        let a3 = AlarmLineView()
+        
+        stack.addArrangedSubview(a1)
+        stack.addArrangedSubview(a2)
+        stack.addArrangedSubview(a3)
         
         stack.translatesAutoresizingMaskIntoConstraints = false
-        firstLabel.translatesAutoresizingMaskIntoConstraints = false
-        container.translatesAutoresizingMaskIntoConstraints = false
-        
-        var stackBorderPadding:CGFloat = 12
         
         NSLayoutConstraint.activate([
-            container.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            container.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            container.topAnchor.constraint(equalTo: topView.bottomAnchor, constant: 30),
-            container.heightAnchor.constraint(equalToConstant: 50),
+            stack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            stack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            stack.topAnchor.constraint(equalTo: topView.bottomAnchor, constant: 30),
             
-            stack.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -10),
-            stack.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 10),
-            stack.topAnchor.constraint(equalTo: container.topAnchor),
-            stack.bottomAnchor.constraint(equalTo: container.bottomAnchor),
-            
-            imageView.heightAnchor.constraint(equalToConstant: 15),
-            imageView.widthAnchor.constraint(equalToConstant: 15)
+            a1.heightAnchor.constraint(equalToConstant: 50),
+            a2.heightAnchor.constraint(equalToConstant: 50),
+            a3.heightAnchor.constraint(equalToConstant: 50)
+        
         ])
     }
 }
